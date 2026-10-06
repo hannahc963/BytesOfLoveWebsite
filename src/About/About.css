@@ -3,67 +3,112 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding-bottom: clamp(2rem, 5vw, 4rem);
   background-color: rgba(252, 236, 168, 255);
+  text-align: center;
+}
+
+.credit-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
 }
 
 .credit-row-title {
+  margin: 1.5rem 0 1.25rem;
   text-align: center;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 7.5vh;
-
-  @media (max-width: 767px) {
-    font-size: 5vh;
-  }
+  font-family: cursive;
+  font-size: clamp(2rem, 7.5vh, 4rem);
+  color: #D184D7;
+  line-height: 1.1;
 }
 
 .credit-row {
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 16rem));
   justify-content: center;
-  display: flex;
-  flex-direction: row;
-  margin-top: 2.5vh;
-  margin-bottom: 5vh;
-  flex-wrap: wrap;
+  justify-items: center;
+  row-gap: clamp(1rem, 2.5vw, 2rem);
+  column-gap: 1.5rem;
+  width: min(calc(100% - 2rem), 68rem);
+  margin: 0 auto;
+}
+
+.credit-row:has(> .credit-cell:only-child) {
+  grid-template-columns: minmax(0, 16rem);
 }
 
 .credit-cell {
-  position: relative;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  width: 25vw;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2vh 1vw;
+  width: 100%;
+  max-width: 16rem;
+  padding: 0;
+  color: inherit;
   text-align: center;
+  text-decoration: none;
 }
 
 .credit-cell img {
-  width: 30vh; /* Ensure the image covers the container's width */
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 1vh;
+  border-radius: 0.75rem;
 }
 
 .credit-name {
+  margin-top: 0.75rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 4vh;
-  @media (max-width: 767px) {
-    font-size: 2.5vh;
-  }
+  font-size: clamp(1.125rem, 2.5vw, 1.75rem);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .credit-title {
+  margin-top: 0.25rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 2.5vh;
-
-  @media (max-width: 767px) {
-    font-size: 2vh;
-  }
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .thankyou-box {
-  margin-top: 5vh;
   align-self: center;
+  width: min(calc(100% - 2rem), 60rem);
   text-align: center;
-  width: 70vw;
+}
+
+@media (min-width: 1200px) {
+  .credit-row {
+    column-gap: clamp(2rem, 9vw, 10rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .credit-row {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, min(16rem, calc((100% - 1.5rem) / 2)))
+    );
+    width: calc(100% - 2rem);
+  }
+
+  .credit-row:has(> .credit-cell:only-child) {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, min(16rem, calc((100% - 1.5rem) / 2)))
+    );
+  }
+
+  .credit-cell:only-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(16rem, calc((100% - 1.5rem) / 2));
+  }
 }
